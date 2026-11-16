@@ -108,6 +108,35 @@
       footer { border-top:1px solid var(--line); color:var(--slate); font-size:.76rem; padding:28px 0 38px; text-align:center; } footer strong { color:var(--navy); }
       @media (max-width:900px) { .hero { grid-template-columns:1fr; padding-top:62px; } .hero-copy { text-align:center; } .hero-copy>p:not(.eyebrow) { margin-left:auto; margin-right:auto; } .hero-actions,.hero-under { justify-content:center; } .gallery-grid,.bonus-grid { grid-template-columns:repeat(2,1fr); } .benefit-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .pricing-grid { max-width:560px; grid-template-columns:1fr; } .complete-card { transform:none; } }
       @media (max-width:640px) { .container { width:min(var(--max),calc(100% - 28px)); } .section { padding:50px 0; } .nav-links a:not(.nav-cta) { display:none; } .hero { padding-bottom:44px; padding-top:52px; } .hero-copy h1 { font-size:clamp(2.2rem,10vw,3.1rem); } .hero-copy>p:not(.eyebrow) { font-size:1rem; } .button { width:100%; } .button-secondary { width:auto; } .connection-grid,.solution-grid,.gallery-grid,.bonus-grid { grid-template-columns:1fr; } .benefit-grid { grid-template-columns:1fr; } .gallery-card .asset-slot,.bonus-card .asset-slot { min-height:210px; } .pdf-carousel { gap:18px; } .pdf-track-middle { margin-left:54px; } .pdf-track-bottom { margin-left:20px; } .pricing-card { padding:24px 20px; } .best-value { margin:-38px 0 18px; } .upgrade-modal-content { padding:22px 14px 16px; } .upgrade-receive-list li { font-size:.76rem; gap:8px; } .upgrade-final-price { margin-top:6px; } .upgrade-modal h2 { font-size:1.55rem; margin-right:30px; } }
+      /* Mobile polish: shorter sections, less paint work and a compact offer dialog. */
+      .gallery-section,.benefits-section,.offer-section,#duvidas,.final-cta { content-visibility:auto; contain-intrinsic-size:720px; }
+      @media (max-width:640px) {
+        .topbar { font-size:.67rem; padding:8px 12px; }
+        .section { padding:38px 0; }
+        .section-head { margin-bottom:22px; }
+        .hero { padding-bottom:34px; padding-top:32px; }
+        .hero-product-image { margin:16px auto 18px; max-height:240px; object-fit:contain; }
+        .pdf-carousel { margin-top:8px; }
+        .bonus-card,.pricing-card,.benefit-card { box-shadow:0 8px 22px rgba(15,23,42,.06); }
+        .upgrade-modal-backdrop { align-items:flex-start; padding:8px; }
+        .upgrade-modal { border-radius:18px; max-height:calc(100dvh - 16px); margin:auto 0; }
+        .upgrade-modal-content { padding:14px 14px 12px; }
+        .upgrade-close { height:30px; right:10px; top:10px; width:30px; }
+        .upgrade-badge { font-size:.62rem; padding:6px 9px; }
+        .upgrade-modal h2 { font-size:1.28rem; line-height:1.08; margin:12px 34px 8px 0; }
+        .upgrade-final-price { gap:2px; margin:0 0 8px; padding:8px 10px; }
+        .upgrade-final-price span { font-size:.72rem; }
+        .upgrade-final-price strong { font-size:1.34rem; }
+        .upgrade-lead { font-size:.82rem; line-height:1.35; margin-bottom:8px; }
+        .upgrade-package-image { margin-bottom:8px; max-height:100px; }
+        .upgrade-receive { margin-bottom:8px; }
+        .upgrade-receive-title { font-size:.76rem; margin-bottom:4px; }
+        .upgrade-receive-list li { font-size:.72rem; gap:7px; line-height:1.25; padding:2px 0; }
+        .upgrade-check { font-size:.88rem; }
+        .upgrade-actions { gap:6px; }
+        .upgrade-accept { font-size:.72rem; min-height:42px; }
+        .upgrade-decline { font-size:.68rem; min-height:30px; }
+      }
     </style>
   </head>
   <body>
@@ -153,6 +182,13 @@
       const BASIC_CHECKOUT_URL = '';
       const COMPLETE_UPGRADE_CHECKOUT_URL = '';
       const COMPLETE_CHECKOUT_URL = '';
+      const CHECKOUTS = { basic: BASIC_CHECKOUT_URL, completeUpgrade: COMPLETE_UPGRADE_CHECKOUT_URL, complete: COMPLETE_CHECKOUT_URL };
+      const initiateCheckout = (event, plan) => {
+        const url = CHECKOUTS[plan];
+        if (!url) { event.preventDefault(); return false; }
+        event.currentTarget.href = url;
+        return true;
+      };
       document.querySelectorAll('.checkout-link').forEach((link) => { link.href = CHECKOUT_URL; });
       const upgradeModal = document.getElementById('upgrade-modal');
       const basicButtons = document.querySelectorAll('.basic-checkout-link');
@@ -162,9 +198,9 @@
       const openUpgradeModal = (event) => { event.preventDefault(); upgradeModal.classList.add('is-open'); upgradeModal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); upgradeAccept.focus(); };
       const closeUpgradeModal = () => { upgradeModal.classList.remove('is-open'); upgradeModal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); };
       basicButtons.forEach((link) => link.addEventListener('click', openUpgradeModal));
-      completeButtons.forEach((link) => { if (COMPLETE_CHECKOUT_URL) link.href = COMPLETE_CHECKOUT_URL; else link.href = '#oferta'; });
-      upgradeAccept.addEventListener('click', (event) => { if (!COMPLETE_UPGRADE_CHECKOUT_URL) { event.preventDefault(); return; } upgradeAccept.href = COMPLETE_UPGRADE_CHECKOUT_URL; });
-      upgradeDecline.addEventListener('click', (event) => { if (!BASIC_CHECKOUT_URL) { event.preventDefault(); closeUpgradeModal(); return; } upgradeDecline.href = BASIC_CHECKOUT_URL; });
+      completeButtons.forEach((link) => link.addEventListener('click', (event) => { initiateCheckout(event, 'complete'); }));
+      upgradeAccept.addEventListener('click', (event) => { initiateCheckout(event, 'completeUpgrade'); });
+      upgradeDecline.addEventListener('click', (event) => { if (!initiateCheckout(event, 'basic')) closeUpgradeModal(); });
       document.querySelector('.upgrade-close').addEventListener('click', closeUpgradeModal);
       upgradeModal.addEventListener('click', (event) => { if (event.target === upgradeModal) closeUpgradeModal(); });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && upgradeModal.classList.contains('is-open')) closeUpgradeModal(); });
