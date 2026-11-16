@@ -199,24 +199,32 @@
       .bonus-copy p { color: var(--muted); font-size: .82rem; margin-bottom: 0; }
       .content-note { border: 1px dashed rgba(250,204,21,.35); border-radius: 12px; color: #c2c7dd; font-size: .73rem; margin-top: 28px; padding: 13px 15px; text-align: center; }
 
-      .offer-wrap { align-items: stretch; display: grid; gap: 30px; grid-template-columns: .92fr 1.08fr; }
-      .offer-pitch { padding: 24px 0; }
-      .offer-pitch h2 { max-width: 560px; }
-      .check-list { display: grid; gap: 13px; list-style: none; margin: 28px 0 0; padding: 0; }
-      .check-list li { align-items: flex-start; color: var(--muted); display: flex; font-size: .92rem; gap: 11px; }
-      .check-list li::before { color: var(--star); content: "✓"; font-weight: 900; }
-      .offer-card { background: linear-gradient(160deg, rgba(30,38,92,.95), rgba(12,18,43,.98)); border: 1px solid rgba(250,204,21,.48); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 32px; position: relative; }
-      .offer-card::before { background: linear-gradient(90deg, transparent, rgba(250,204,21,.72), transparent); content: ""; height: 1px; left: 15%; position: absolute; top: 0; width: 70%; }
-      .offer-tag { background: var(--star); border-radius: 999px; color: #2e2605; display: inline-flex; font-size: .68rem; font-weight: 900; letter-spacing: .08em; padding: 8px 12px; text-transform: uppercase; }
-      .offer-card h3 { font-size: 1.7rem; letter-spacing: -.04em; margin: 22px 0 8px; }
-      .offer-price { color: var(--white); font-size: 1rem; margin-bottom: 8px; }
-      .offer-price strong { color: var(--star); font-size: 2.8rem; letter-spacing: -.06em; }
-      .offer-sub { color: var(--muted); font-size: .79rem; margin-bottom: 20px; }
-      .offer-list { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); list-style: none; margin: 20px 0; padding: 16px 0; }
-      .offer-list li { color: var(--ink); font-size: .83rem; padding: 6px 0; }
-      .offer-list li::before { color: var(--star); content: "✦"; margin-right: 9px; }
-      .offer-card .button { width: 100%; }
-      .secure-line { color: #8993b8; font-size: .72rem; margin: 14px 0 0; text-align: center; }
+      .pricing-section { background: #f5f3ff; color: #0f172a; }
+      .pricing-section .section-label { color: #7c3aed; }
+      .pricing-head { max-width: 720px; }
+      .pricing-head h2 { color: #4c1d95; }
+      .pricing-head p:not(.section-label) { color: #64748b; }
+      .pricing-grid { align-items: stretch; display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 auto; max-width: 930px; }
+      .pricing-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 24px; color: #0f172a; display: flex; flex-direction: column; padding: 30px; position: relative; }
+      .pricing-card h3 { color: #0f172a; font-size: 1.38rem; letter-spacing: -.035em; margin: 0 0 8px; }
+      .pricing-kicker { color: #64748b; font-size: .76rem; font-weight: 800; letter-spacing: .08em; margin: 0 0 19px; text-transform: uppercase; }
+      .pricing-price { color: #4c1d95; font-size: 2.65rem; font-weight: 900; letter-spacing: -.065em; line-height: 1; margin: 0; }
+      .pricing-payment { color: #64748b; font-size: .78rem; margin: 7px 0 22px; }
+      .pricing-list { border-top: 1px solid #e2e8f0; list-style: none; margin: 0 0 27px; padding: 15px 0 0; }
+      .pricing-list li { color: #334155; font-size: .88rem; padding: 7px 0 7px 24px; position: relative; }
+      .pricing-list li::before { color: #7c3aed; content: "✓"; font-weight: 900; left: 0; position: absolute; }
+      .pricing-card .button { margin-top: auto; width: 100%; }
+      .pricing-button-outline { background: #fff; border: 1px solid #7c3aed; color: #6d28d9; }
+      .pricing-button-outline:hover { background: #f5f3ff; }
+      .complete-card { border: 2px solid #7c3aed; box-shadow: 0 16px 42px rgba(124, 58, 237, .14); transform: translateY(-9px); }
+      .best-value { align-self: flex-start; background: #ede9fe; border-radius: 999px; color: #6d28d9; font-size: .68rem; font-weight: 900; letter-spacing: .08em; margin: -44px 0 22px; padding: 8px 12px; text-transform: uppercase; }
+      .complete-card .pricing-price { color: #6d28d9; }
+      .pricing-button-solid { background: #7c3aed; box-shadow: 0 12px 24px rgba(124, 58, 237, .2); color: #fff; }
+      .pricing-button-solid:hover { background: #6d28d9; box-shadow: 0 15px 30px rgba(124, 58, 237, .26); }
+      .package-image-slot { align-items: center; background: #f5f3ff; border: 1px dashed #c4b5fd; border-radius: 16px; color: #6d28d9; display: flex; flex-direction: column; gap: 5px; justify-content: center; margin: 0 0 22px; min-height: 155px; padding: 20px; text-align: center; }
+      .package-image-icon { align-items: center; background: #ede9fe; border-radius: 50%; display: inline-flex; font-size: 1.4rem; height: 42px; justify-content: center; width: 42px; }
+      .package-image-slot strong { font-size: .88rem; }
+      .package-image-slot small { color: #64748b; font-size: .72rem; }
 
       .guarantee { background: radial-gradient(circle at 50% 0, rgba(250,204,21,.12), transparent 33%), #111b45; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); text-align: center; }
       .guarantee-badge { align-items: center; border: 1px solid rgba(250,204,21,.42); border-radius: 50%; color: var(--star); display: inline-flex; flex-direction: column; height: 92px; justify-content: center; margin-bottom: 25px; width: 92px; }
@@ -247,14 +255,14 @@
       .lightbox-close { background: none; border: 0; color: var(--white); cursor: pointer; float: right; font-size: 1.5rem; }
 
       @media (max-width: 900px) {
-        .hero-grid, .offer-wrap { grid-template-columns: 1fr; }
+        .hero-grid { grid-template-columns: 1fr; }
         .hero-copy { text-align: center; } .hero-copy > p { margin-left: auto; margin-right: auto; }
         .trust-row, .button-row { justify-content: center; }
         .hero-visual { min-height: 470px; }
         .gallery { grid-template-columns: repeat(2, 1fr); }
         .benefit-grid, .bonus-grid { grid-template-columns: repeat(2, 1fr); }
-        .offer-pitch { text-align: center; } .offer-pitch h2 { margin-left: auto; margin-right: auto; }
-        .check-list { max-width: 450px; margin-left: auto; margin-right: auto; text-align: left; }
+        .pricing-grid { grid-template-columns: 1fr; max-width: 560px; }
+        .complete-card { transform: none; }
       }
       @media (max-width: 620px) {
         .container { width: min(var(--max), calc(100% - 28px)); }
@@ -268,7 +276,8 @@
         .section { padding: 75px 0; } h2 { font-size: 2.35rem; }
         .gallery, .benefit-grid, .bonus-grid { grid-template-columns: 1fr; }
         .preview-card { min-height: 220px; } .preview-art { height: 144px; }
-        .offer-card { padding: 24px 20px; } .offer-price strong { font-size: 2.45rem; }
+        .pricing-card { padding: 24px 20px; }
+        .best-value { margin: -38px 0 18px; }
         .button { width: 100%; } .button-ghost { width: auto; }
       }
     </style>
@@ -364,10 +373,41 @@
           </div>
         </section>
 
-        <section class="section container" id="oferta">
-          <div class="offer-wrap">
-            <div class="offer-pitch"><p class="section-label">Escolha seu acesso</p><h2>Uma biblioteca inteira para colocar o Universo ao alcance da sua próxima descoberta.</h2><p style="color: var(--muted);">Tenha uma base visual para estudar no seu ritmo, preparar uma aula ou simplesmente alimentar a curiosidade por tudo o que existe além do nosso planeta.</p><ul class="check-list"><li>+250 materiais digitais sobre Astronomia</li><li>Mapas mentais, fichas ilustradas e atlas</li><li>Conteúdos para professores, estudantes e curiosos</li><li>4 bônus complementares inclusos</li><li>Pagamento único e acesso digital</li></ul></div>
-            <aside class="offer-card"><span class="offer-tag">Pacote completo</span><h3>+250 Materiais de Astronomia</h3><p class="offer-price"><strong>Oferta no checkout</strong></p><p class="offer-sub">Preço e formas de pagamento exibidos na página segura de finalização.</p><ul class="offer-list"><li>Acesso ao pacote digital completo</li><li>Atlas Visual das Constelações</li><li>Recursos para consulta e ensino</li><li>Garantia incondicional de 7 dias</li></ul><a class="button button-primary checkout-link" href="#oferta">Quero acessar os +250 materiais <span>→</span></a><p class="secure-line">Pagamento seguro · produto 100% digital</p></aside>
+        <section class="section pricing-section" id="oferta">
+          <div class="container">
+            <div class="section-head pricing-head"><p class="section-label">Escolha seu material</p><h2>Comece a explorar o Universo hoje mesmo</h2><p>Escolha entre o pacote básico para estudar e consultar ou o pacote completo com os quatro bônus exclusivos.</p></div>
+            <div class="pricing-grid">
+              <article class="pricing-card basic-card">
+                <p class="pricing-kicker">Material digital</p>
+                <h3>Material Básico</h3>
+                <p class="pricing-price">R$ 10,00</p>
+                <p class="pricing-payment">Pagamento único</p>
+                <ul class="pricing-list">
+                  <li>+250 Materiais de Astronomia</li>
+                  <li>Conteúdos digitais ilustrados</li>
+                  <li>Materiais organizados para estudo e consulta</li>
+                  <li>Sem os quatro bônus exclusivos</li>
+                </ul>
+                <a class="button pricing-button-outline basic-checkout-link" href="#oferta">Quero o material básico <span>→</span></a>
+              </article>
+              <article class="pricing-card complete-card">
+                <span class="best-value">Pacote mais vantajoso</span>
+                <div class="package-image-slot" role="img" aria-label="Espaço reservado para a imagem oficial do pacote completo"><span class="package-image-icon">✦</span><strong>Imagem do pacote completo</strong><small>Insira aqui o arquivo oficial do produto</small></div>
+                <p class="pricing-kicker">Material digital + bônus</p>
+                <h3>Material Completo</h3>
+                <p class="pricing-price">R$ 27,90</p>
+                <p class="pricing-payment">Pagamento único</p>
+                <ul class="pricing-list">
+                  <li>+250 Materiais de Astronomia</li>
+                  <li>Todos os conteúdos do pacote básico</li>
+                  <li>Bônus 01: Atlas Visual das Constelações</li>
+                  <li>Bônus 02: Atlas dos Exoplanetas e Mundos Distantes</li>
+                  <li>Bônus 03: Enciclopédia dos Mistérios do Universo</li>
+                  <li>Bônus 04: Certificado Digital de Astronomia</li>
+                </ul>
+                <a class="button pricing-button-solid complete-checkout-link" href="#oferta">Quero o material completo <span>→</span></a>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -402,7 +442,11 @@
     <script>
       // Substitua pelo checkout real antes da publicação. Enquanto não informado, o CTA mantém o usuário na seção de oferta.
       const CHECKOUT_URL = '#oferta';
+      const BASIC_CHECKOUT_URL = '#oferta';
+      const COMPLETE_CHECKOUT_URL = '#oferta';
       document.querySelectorAll('.checkout-link').forEach((link) => { link.href = CHECKOUT_URL; });
+      document.querySelectorAll('.basic-checkout-link').forEach((link) => { link.href = BASIC_CHECKOUT_URL; });
+      document.querySelectorAll('.complete-checkout-link').forEach((link) => { link.href = COMPLETE_CHECKOUT_URL; });
 
       const filters = document.querySelectorAll('.filter');
       const cards = document.querySelectorAll('.preview-card');
