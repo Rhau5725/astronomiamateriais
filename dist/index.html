@@ -24,8 +24,7 @@
       .upgrade-modal-content { padding:26px 28px 24px; } .upgrade-close { align-items:center; background:#f5f3ff; border:0; border-radius:50%; color:var(--purple-dark); cursor:pointer; display:inline-flex; font-size:1.25rem; height:34px; justify-content:center; line-height:1; position:absolute; right:16px; top:16px; width:34px; } .upgrade-close:hover { background:#ede9fe; }
       .upgrade-badge { background:#ede9fe; border-radius:999px; color:var(--purple); display:inline-flex; font-size:.7rem; font-weight:900; letter-spacing:.1em; padding:8px 12px; text-transform:uppercase; } .upgrade-modal h2 { color:var(--purple-dark); font-size:clamp(1.65rem,4vw,2.25rem); letter-spacing:-.05em; line-height:1.04; margin:18px 40px 12px 0; } .upgrade-lead { color:var(--slate); font-size:.96rem; line-height:1.6; margin-bottom:14px; }
       .upgrade-package-image { display:block; height:auto; margin:0 auto 16px; max-height:150px; object-fit:contain; width:100%; }
-      .upgrade-receive { margin:0 0 16px; } .upgrade-receive-title { color:var(--navy); font-size:.88rem; letter-spacing:.06em; margin:0 0 8px; text-transform:uppercase; } .upgrade-receive-list { list-style:none; margin:0; padding:0; } .upgrade-receive-list li { align-items:flex-start; color:var(--navy); display:flex; font-size:.82rem; gap:10px; line-height:1.4; padding:4px 0; } .upgrade-check { color:var(--purple); flex:0 0 auto; font-size:1rem; font-weight:900; line-height:1.3; } .upgrade-included-note { color:var(--purple-dark); font-size:.78rem; font-weight:800; margin:0 0 14px; text-align:center; }
-      .upgrade-price-box { background:linear-gradient(135deg,#f5f3ff,#fff); border:1px solid #ddd6fe; border-radius:14px; margin-bottom:16px; padding:13px 14px; } .upgrade-price-row { align-items:center; color:var(--slate); display:flex; font-size:.84rem; justify-content:space-between; } .upgrade-price-row+ .upgrade-price-row { margin-top:6px; } .upgrade-price-total { border-top:1px solid #ddd6fe; color:var(--purple-dark); font-size:1.04rem; font-weight:900; margin-top:10px!important; padding-top:10px; }
+      .upgrade-receive { margin:0 0 18px; } .upgrade-receive-title { color:var(--navy); font-size:.88rem; letter-spacing:.06em; margin:0 0 8px; text-transform:uppercase; } .upgrade-receive-list { list-style:none; margin:0; padding:0; } .upgrade-receive-list li { align-items:flex-start; color:var(--navy); display:flex; font-size:.82rem; gap:10px; line-height:1.4; padding:4px 0; } .upgrade-check { color:var(--purple); flex:0 0 auto; font-size:1rem; font-weight:900; line-height:1.3; }
       .upgrade-actions { display:grid; gap:10px; } .upgrade-actions .button { width:100%; } .upgrade-accept { background:var(--purple); box-shadow:0 12px 24px rgba(124,58,237,.2); color:var(--white); } .upgrade-accept:hover { background:#6d28d9; } .upgrade-decline { background:transparent; color:var(--slate); font-size:.74rem; min-height:40px; text-transform:none; } .upgrade-decline:hover { color:var(--purple-dark); transform:none; }
       body.modal-open { overflow:hidden; }
       .nav { align-items:center; display:flex; justify-content:space-between; padding:22px 0; }
@@ -140,12 +139,6 @@
               <li><span class="upgrade-check" aria-hidden="true">✓</span><span>Certificado Digital de Astronomia</span></li>
             </ul>
           </div>
-          <div class="upgrade-price-box" aria-label="Resumo do valor da oferta especial">
-            <div class="upgrade-price-row"><span>Material Básico</span><strong>R$ 10,00</strong></div>
-            <div class="upgrade-price-row"><span>Upgrade</span><strong>+ R$ 7,00</strong></div>
-            <div class="upgrade-price-row upgrade-price-total"><span>Total especial</span><strong>R$ 17,00</strong></div>
-          </div>
-          <p class="upgrade-included-note">Todos os bônus estão incluídos no upgrade por R$ 17,00.</p>
           <div class="upgrade-actions">
             <a class="button upgrade-accept" href="#oferta">Sim, quero o completo por R$ 17,00 <span>→</span></a>
             <a class="button upgrade-decline" href="#oferta">Não, quero apenas o Básico por R$ 10,00</a>
