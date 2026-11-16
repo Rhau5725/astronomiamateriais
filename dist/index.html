@@ -61,9 +61,9 @@
       .media-note { color:var(--slate); font-size:.75rem; margin:22px auto 0; max-width:740px; text-align:center; }
       .pdf-carousel { display:flex; flex-direction:column; gap:24px; margin:0 calc(50% - 50vw); overflow:hidden; padding:4px 0 8px; }
       .pdf-row { isolation:isolate; overflow:hidden; width:100%; }
-      .pdf-track { display:flex; flex:none; gap:16px; width:max-content; }
+      .pdf-track { backface-visibility:hidden; display:flex; flex:none; gap:16px; transform:translate3d(0,0,0); width:max-content; will-change:transform; }
       .pdf-track-top { animation:pdf-slide-left 72s linear infinite; }
-      .pdf-track-middle { animation:pdf-slide-middle 84s linear infinite; margin-left:clamp(80px,12vw,240px); }
+      .pdf-track-middle { animation:pdf-slide-middle 140s linear infinite; margin-left:clamp(80px,12vw,240px); }
       .pdf-track-bottom { animation:pdf-slide-bottom 96s linear infinite; margin-left:clamp(18px,6vw,110px); }
       .pdf-page { background:#0b1120; border:1px solid #c4b5fd; border-radius:0; flex:0 0 clamp(260px,30vw,430px); overflow:hidden; }
       .pdf-page img { aspect-ratio:3 / 2; height:auto; object-fit:contain; width:100%; }
@@ -199,6 +199,13 @@
       let basicCheckoutReady = false;
       const openUpgradeModal = (event) => { event.preventDefault(); upgradeModal.classList.add('is-open'); upgradeModal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); upgradeAccept.focus(); };
       const closeUpgradeModal = () => { upgradeModal.classList.remove('is-open'); upgradeModal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); };
+      const middleTrack = document.querySelector('.pdf-track-middle');
+      const topTrack = document.querySelector('.pdf-track-top');
+      if (middleTrack && topTrack) {
+        const middleSet = Array.from(middleTrack.children).slice(0, 6);
+        const extraSet = Array.from(topTrack.children).slice(0, 6);
+        middleTrack.replaceChildren(...middleSet.map((page) => page.cloneNode(true)), ...extraSet.map((page) => page.cloneNode(true)), ...middleSet.map((page) => page.cloneNode(true)), ...extraSet.map((page) => page.cloneNode(true)));
+      }
       basicButtons.forEach((link) => link.addEventListener('click', (event) => { if (basicCheckoutReady) initiateCheckout(event, 'basic'); else openUpgradeModal(event); }));
       completeButtons.forEach((link) => link.addEventListener('click', (event) => { initiateCheckout(event, 'complete'); }));
       upgradeAccept.addEventListener('click', (event) => { initiateCheckout(event, 'completeUpgrade'); });
