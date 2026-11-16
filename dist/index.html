@@ -196,12 +196,13 @@
       const completeButtons = document.querySelectorAll('.complete-checkout-link');
       const upgradeAccept = document.querySelector('.upgrade-accept');
       const upgradeDecline = document.querySelector('.upgrade-decline');
+      let basicCheckoutReady = false;
       const openUpgradeModal = (event) => { event.preventDefault(); upgradeModal.classList.add('is-open'); upgradeModal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); upgradeAccept.focus(); };
       const closeUpgradeModal = () => { upgradeModal.classList.remove('is-open'); upgradeModal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); };
-      basicButtons.forEach((link) => link.addEventListener('click', openUpgradeModal));
+      basicButtons.forEach((link) => link.addEventListener('click', (event) => { if (basicCheckoutReady) initiateCheckout(event, 'basic'); else openUpgradeModal(event); }));
       completeButtons.forEach((link) => link.addEventListener('click', (event) => { initiateCheckout(event, 'complete'); }));
       upgradeAccept.addEventListener('click', (event) => { initiateCheckout(event, 'completeUpgrade'); });
-      upgradeDecline.addEventListener('click', (event) => { if (!initiateCheckout(event, 'basic')) closeUpgradeModal(); });
+      upgradeDecline.addEventListener('click', (event) => { event.preventDefault(); basicCheckoutReady = true; closeUpgradeModal(); document.querySelector('.basic-card')?.scrollIntoView({ behavior:'smooth', block:'center' }); });
       document.querySelector('.upgrade-close').addEventListener('click', closeUpgradeModal);
       upgradeModal.addEventListener('click', (event) => { if (event.target === upgradeModal) closeUpgradeModal(); });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && upgradeModal.classList.contains('is-open')) closeUpgradeModal(); });
