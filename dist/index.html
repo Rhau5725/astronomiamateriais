@@ -71,6 +71,8 @@
       @keyframes pdf-slide-right { from { transform:translateX(calc(-50% - 8px)); } to { transform:translateX(0); } }
       @keyframes pdf-slide-middle { from { transform:translateX(calc(-50% - 8px)); } to { transform:translateX(0); } }
       @keyframes pdf-slide-bottom { from { transform:translateX(0); } to { transform:translateX(calc(-50% - 8px)); } }
+      @keyframes pdf-loop-left { from { transform:translate3d(0,0,0); } to { transform:translate3d(calc(-1 * var(--loop-distance)),0,0); } }
+      @keyframes pdf-loop-right { from { transform:translate3d(calc(-1 * var(--loop-distance)),0,0); } to { transform:translate3d(0,0,0); } }
       .benefits-section { background:#F5F3FF; } .benefit-grid { align-items:stretch; display:grid; gap:18px; grid-template-columns:repeat(2,minmax(0,1fr)); margin:0 auto; max-width:900px; }
       .benefit-card { background:var(--white); border:1px solid #ddd6fe; border-radius:16px; padding:26px; } .benefit-icon { align-items:center; background:#ede9fe; border-radius:12px; color:#7C3AED; display:inline-flex; height:46px; justify-content:center; margin-bottom:18px; width:46px; } .benefit-icon svg { fill:none; height:23px; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; width:23px; } .benefit-card h3 { color:#0F172A; font-size:1.12rem; margin-bottom:9px; } .benefit-card p { color:var(--slate); font-size:.88rem; line-height:1.6; margin-bottom:0; }
       .bonus-grid { display:grid; gap:16px; grid-template-columns:repeat(4,1fr); } .bonus-card { border:1px solid #ddd6fe; border-radius:var(--radius); overflow:hidden; }
@@ -206,6 +208,27 @@
         const extraSet = Array.from(topTrack.children).slice(0, 6);
         middleTrack.replaceChildren(...middleSet.map((page) => page.cloneNode(true)), ...extraSet.map((page) => page.cloneNode(true)), ...middleSet.map((page) => page.cloneNode(true)), ...extraSet.map((page) => page.cloneNode(true)));
       }
+      const setupPdfCarousel = (selector, duration, direction) => {
+        const track = document.querySelector(selector);
+        if (!track || track.children.length < 2 || track.children.length % 2 !== 0) return;
+        const halfCount = track.children.length / 2;
+        const half = Array.from(track.children).slice(0, halfCount);
+        track.replaceChildren(...half.map((page) => page.cloneNode(true)), ...half.map((page) => page.cloneNode(true)));
+        let firstPass = true;
+        const refreshLoopDistance = () => {
+          const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+          const distance = Array.from(track.children).slice(0, halfCount).reduce((total, page) => total + page.getBoundingClientRect().width, 0) + gap * halfCount;
+          track.style.setProperty('--loop-distance', `${distance}px`);
+          if (firstPass && direction === 'right') track.style.transform = `translate3d(${-distance}px,0,0)`;
+        };
+        refreshLoopDistance();
+        track.style.animation = `pdf-loop-${direction} ${duration}s linear infinite`;
+        firstPass = false;
+        window.addEventListener('resize', refreshLoopDistance, { passive:true });
+      };
+      setupPdfCarousel('.pdf-track-top', 72, 'left');
+      setupPdfCarousel('.pdf-track-middle', 140, 'right');
+      setupPdfCarousel('.pdf-track-bottom', 96, 'left');
       basicButtons.forEach((link) => link.addEventListener('click', (event) => { if (basicCheckoutReady) initiateCheckout(event, 'basic'); else openUpgradeModal(event); }));
       completeButtons.forEach((link) => link.addEventListener('click', (event) => { initiateCheckout(event, 'complete'); }));
       upgradeAccept.addEventListener('click', (event) => { initiateCheckout(event, 'completeUpgrade'); });
